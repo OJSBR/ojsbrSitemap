@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: tr\n"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Geliştirilmiş Site Haritası"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Derginin site haritasını arama motorları için geliştirir. Giriş, kayıt, arama ve güncel sayı sayfalarını ve tam metin dosyalarını çıkarır; her sayfanın değişiklik tarihini, yayın kurulunu, gizlilik bildirimini, kategorileri ve derginin diğer dillerindeki her sayfaya bağlantıları (hreflang) ekler."

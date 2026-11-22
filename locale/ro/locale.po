@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: ro\n"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Hartă a site-ului îmbunătățită"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Îmbunătățește harta site-ului revistei pentru motoarele de căutare. Elimină paginile de autentificare, înregistrare, căutare și număr curent, precum și șpalturile, și adaugă data modificării fiecărei pagini, echipa editorială, declarația de confidențialitate, categoriile și legăturile către fiecare pagină în celelalte limbi ale revistei (hreflang)."

@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: hu\n"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Továbbfejlesztett oldaltérkép"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Javítja a folyóirat oldaltérképét a keresőmotorok számára. Eltávolítja a bejelentkezési, regisztrációs, keresési és aktuális számhoz tartozó oldalakat, valamint a kefelevonatokat, és hozzáadja minden oldal módosítási dátumát, a szerkesztőséget, az adatvédelmi nyilatkozatot, a kategóriákat és az egyes oldalak hivatkozásait a folyóirat többi nyelvén (hreflang)."

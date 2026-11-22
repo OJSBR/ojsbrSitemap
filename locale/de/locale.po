@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: de\n"
+
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Verbesserte Sitemap"
+
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Verbessert die Sitemap der Zeitschrift für Suchmaschinen. Entfernt die Seiten für Anmeldung, Registrierung, Suche und aktuelle Ausgabe sowie die Fahnen und ergänzt das Änderungsdatum jeder Seite, die Redaktion, die Datenschutzerklärung, die Kategorien und Links zu jeder Seite in den anderen Sprachen der Zeitschrift (hreflang)."

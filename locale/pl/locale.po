@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: pl\n"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Ulepszona mapa witryny"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Ulepsza mapę witryny czasopisma dla wyszukiwarek. Usuwa strony logowania, rejestracji, wyszukiwania i bieżącego numeru oraz pliki publikacji, a dodaje datę modyfikacji każdej strony, redakcję, oświadczenie o prywatności, kategorie i odnośniki do każdej strony w pozostałych językach czasopisma (hreflang)."

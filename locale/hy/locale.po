@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: hy\n"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Բարելավված կայքի քարտեզ"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Բարելավում է ամսագրի կայքի քարտեզը որոնողական համակարգերի համար։ Հեռացնում է մուտքի, գրանցման, որոնման և ընթացիկ համարի էջերը և նախնական տարբերակները, ավելացնում է յուրաքանչյուր էջի փոփոխման ամսաթիվը, խմբագրական կազմը, գաղտնիության հայտարարությունը, կատեգորիաները և յուրաքանչյուր էջի հղումները ամսագրի մյուս լեզուներով (hreflang)։"

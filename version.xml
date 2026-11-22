@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
+
+<!--
+  * plugins/generic/ojsbrSitemap/version.xml
+  *
+  * Copyright (c) 2026 OJSBR (https://ojsbr.com)
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  * Plugin version information.
+  -->
+<version>
+	<application>ojsbrSitemap</application>
+	<type>plugins.generic</type>
+	<release>1.0.0.0</release>
+	<date>2026-11-22</date>
+	<lazy-load>1</lazy-load>
+	<class>OjsbrSitemapPlugin</class>
+</version>

@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: vi\n"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Sơ đồ trang web cải tiến"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Cải thiện sơ đồ trang web của tạp chí cho các công cụ tìm kiếm. Loại bỏ các trang đăng nhập, đăng ký, tìm kiếm và số hiện tại cùng các bản in thử, đồng thời thêm ngày sửa đổi của từng trang, ban biên tập, tuyên bố quyền riêng tư, các danh mục và liên kết tới từng trang bằng các ngôn ngữ khác của tạp chí (hreflang)."

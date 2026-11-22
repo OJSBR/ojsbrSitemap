@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: OJSBR\n"
+"Language-Team: OJSBR\n"
+"Language: ru\n"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.displayName"
+msgstr "Улучшенная карта сайта"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.description"
+msgstr "Улучшает карту сайта журнала для поисковых систем. Убирает страницы входа, регистрации, поиска и текущего выпуска, а также гранки, и добавляет дату изменения каждой страницы, редакцию, заявление о конфиденциальности, категории и ссылки на каждую страницу на других языках журнала (hreflang)."
