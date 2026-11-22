@@ -12,3 +12,6 @@ msgstr "Sitemap mellorado"
 
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Mellora o sitemap da revista para os buscadores. Quita as páxinas de acceso, rexistro, busca e número actual e as galeradas, e engade a data de modificación de cada páxina, o equipo editorial, a declaración de privacidade, as categorías e as ligazóns a cada páxina nos outros idiomas da revista (hreflang)."
+
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Xerar os sitemaps das revistas"

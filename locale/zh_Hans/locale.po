@@ -14,3 +14,7 @@ msgstr "改进的站点地图"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "为搜索引擎改进期刊的站点地图。移除登录、注册、搜索和当期页面以及校样，并添加每个页面的修改日期、编委会、隐私声明、类别以及指向期刊其他语言中各页面的链接（hreflang）。"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "生成期刊的站点地图"

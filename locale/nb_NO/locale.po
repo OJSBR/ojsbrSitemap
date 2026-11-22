@@ -14,3 +14,7 @@ msgstr "Forbedret nettstedskart"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Forbedrer tidsskriftets nettstedskart for søkemotorer. Fjerner sidene for innlogging, registrering, søk og gjeldende nummer samt korrekturene, og legger til endringsdatoen for hver side, redaksjonen, personvernerklæringen, kategoriene og lenker til hver side på tidsskriftets andre språk (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Lag nettstedskartene til tidsskriftene"

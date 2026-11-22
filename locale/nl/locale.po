@@ -12,3 +12,6 @@ msgstr "Verbeterde sitemap"
 
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Verbetert de sitemap van het tijdschrift voor zoekmachines. Verwijdert de pagina's voor inloggen, registratie, zoeken en het huidige nummer en de proefdrukken, en voegt de wijzigingsdatum van elke pagina, het redactioneel colofon, de privacyverklaring, de categorieën en links naar elke pagina in de andere talen van het tijdschrift (hreflang) toe."
+
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "De sitemaps van de tijdschriften genereren"

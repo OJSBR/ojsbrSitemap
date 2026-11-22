@@ -14,3 +14,7 @@ msgstr "Forbedret sitemap"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Forbedrer tidsskriftets sitemap til søgemaskiner. Fjerner siderne for login, registrering, søgning og aktuelt nummer samt korrekturerne og tilføjer ændringsdatoen for hver side, redaktionen, privatlivserklæringen, kategorierne og links til hver side på tidsskriftets andre sprog (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Generér tidsskrifternes sitemaps"

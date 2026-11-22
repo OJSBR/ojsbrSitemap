@@ -12,7 +12,7 @@
 <version>
 	<application>ojsbrSitemap</application>
 	<type>plugins.generic</type>
-	<release>1.0.0.1</release>
+	<release>1.1.0.0</release>
 	<date>2026-11-22</date>
 	<lazy-load>1</lazy-load>
 	<class>OjsbrSitemapPlugin</class>

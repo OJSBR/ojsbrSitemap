@@ -243,6 +243,27 @@ class SitemapTransformerTest extends PKPTestCase
         $this->assertSame(44000, $this->published($doc)->query('//xhtml:link')->length);
     }
 
+    public function testChangingTwiceGivesTheSameSitemap(): void
+    {
+        // The scheduled task transforms the document the hook already transformed.
+        $article = self::BASE . '/article/view/7';
+        $doc = $this->sitemap([self::BASE, $article, self::BASE . '/login']);
+        $transformer = new SitemapTransformer(
+            remove: [self::BASE . '/login'],
+            lastModified: [$article => '2024-05-06'],
+            add: [self::BASE . '/about/editorialMasthead'],
+            latest: [self::BASE],
+            alternates: ['en' => self::BASE, 'es' => 'https://example.org/journal/es'],
+            currentBase: self::BASE,
+            defaultHreflang: 'en',
+        );
+        $transformer->transform($doc);
+        $once = $doc->saveXML();
+        $transformer->transform($doc);
+
+        $this->assertSame($once, $doc->saveXML());
+    }
+
     public function testAJournalWithOneLanguageGetsNoLanguageLinks(): void
     {
         $doc = $this->sitemap([self::BASE]);

@@ -14,3 +14,7 @@ msgstr "Izboljšan zemljevid strani"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Izboljša zemljevid strani revije za iskalnike. Odstrani strani za prijavo, registracijo, iskanje in trenutno številko ter krtačne odtise in doda datum spremembe vsake strani, uredništvo, izjavo o zasebnosti, kategorije in povezave na vsako stran v drugih jezikih revije (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Ustvari zemljevide strani revij"

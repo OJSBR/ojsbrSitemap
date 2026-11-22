@@ -14,3 +14,7 @@ msgstr "Poboljšana mapa sajta"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Poboljšava mapu sajta časopisa za pretraživače. Uklanja stranice za prijavu, registraciju, pretragu i aktuelni broj i probne otiske, a dodaje datum izmene svake stranice, uređivački tim, izjavu o privatnosti, kategorije i veze ka svakoj stranici na drugim jezicima časopisa (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Generisanje mapa sajta časopisa"

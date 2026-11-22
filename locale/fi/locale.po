@@ -14,3 +14,7 @@ msgstr "Parannettu sivukartta"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Parantaa lehden sivukarttaa hakukoneita varten. Poistaa kirjautumis-, rekisteröitymis-, haku- ja nykyisen numeron sivut sekä julkaistavat tiedostot ja lisää kunkin sivun muutospäivän, toimituskunnan, tietosuojaselosteen, kategoriat ja linkit kuhunkin sivuun lehden muilla kielillä (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Luo lehtien sivukartat"

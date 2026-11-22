@@ -21,6 +21,8 @@ namespace APP\plugins\generic\ojsbrSitemap\tests;
 use APP\core\Application;
 use APP\core\Request;
 use APP\pages\sitemap\SitemapHandler;
+use APP\plugins\generic\ojsbrSitemap\classes\SitemapPageHandler;
+use APP\plugins\generic\ojsbrSitemap\classes\SitemapTask;
 use APP\plugins\generic\ojsbrSitemap\classes\SitemapTransformer;
 use APP\plugins\generic\ojsbrSitemap\OjsbrSitemapPlugin;
 use DOMDocument;
@@ -28,6 +30,8 @@ use DOMXPath;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\core\Registry;
+use PKP\facades\Locale;
+use PKP\plugins\Hook;
 use PKP\tests\PKPTestCase;
 
 #[CoversClass(OjsbrSitemapPlugin::class)]
@@ -75,6 +79,7 @@ class OjsbrSitemapTest extends PKPTestCase
     protected function tearDown(): void
     {
         if ($this->journal) {
+            (new OjsbrSitemapPlugin())->getCache()->clear($this->journal->journal_id);
             (new OjsbrSitemapPlugin())->updateSetting($this->journal->journal_id, 'enabled', (bool) $this->previousEnabled, 'bool');
         }
         parent::tearDown();
@@ -126,6 +131,64 @@ class OjsbrSitemapTest extends PKPTestCase
             $this->request->getDispatcher()->url($this->request, Application::ROUTE_PAGE, $this->journal->path, 'article', 'download', ['x/y', '3'], urlLocaleForPage: ''),
             $plugin->urlTemplate($this->request, $this->journal->path, 'article', 'download', 2, '')('x/y', '3')
         );
+    }
+
+    public function testTheSitemapPageIsServedByThePlugin(): void
+    {
+        $page = 'sitemap';
+        $op = 'index';
+        $sourceFile = 'pages/sitemap/index.php';
+        $handler = null;
+        Hook::call('LoadHandler', [&$page, &$op, &$sourceFile, &$handler]);
+
+        $this->assertInstanceOf(SitemapPageHandler::class, $handler);
+    }
+
+    public function testTheTaskGeneratesTheSitemapOfThePageAndThePageServesIt(): void
+    {
+        $locale = Locale::getLocale();
+        $live = $this->sitemap()->document->saveXML();
+        $plugin = new OjsbrSitemapPlugin();
+        $cache = $plugin->getCache();
+        $cache->clear($this->journal->journal_id);
+
+        $task = new SitemapTask();
+        $run = fn () => (new \ReflectionMethod(SitemapTask::class, 'executeActions'))->invoke($task);
+        $this->assertTrue($run(), 'The task failed: see its log in the scheduled task logs.');
+        $file = $cache->fresh($this->journal->journal_id, $locale);
+        $this->assertNotNull($file, 'The task wrote no sitemap.');
+
+        // The file has the same entries as the sitemap the page builds. OJS does not
+        // fix the order of the articles of an issue, so it may differ between runs.
+        $generated = new DOMDocument();
+        $generated->loadXML((string) file_get_contents($file));
+        $this->assertSame($this->entries($live), $this->entries($generated->saveXML()));
+
+        // The page sends the file.
+        $this->request = $this->mockRequest($this->journal->path . '/sitemap');
+        ob_start();
+        (new SitemapPageHandler($plugin))->index([], $this->request);
+        $this->assertSame(file_get_contents($file), ob_get_clean());
+
+        // Nothing is generated again while the content is the same.
+        $mtime = filemtime($file);
+        touch($file, $mtime - 60);
+        clearstatcache();
+        $this->assertTrue($run());
+        clearstatcache();
+        $this->assertSame($mtime - 60, filemtime($file));
+    }
+
+    /**
+     * The url elements of a sitemap, as text, sorted.
+     *
+     * @return string[]
+     */
+    protected function entries(string $xml): array
+    {
+        preg_match_all('#<url>.*?</url>#s', $xml, $m);
+        sort($m[0]);
+        return $m[0];
     }
 
     public function testPagesWithoutContentForSearchEnginesAreRemoved(): void

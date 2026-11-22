@@ -14,3 +14,7 @@ msgstr "Vylepšená mapa stránek"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Vylepšuje mapu stránek časopisu pro vyhledávače. Odstraňuje stránky přihlášení, registrace, vyhledávání a aktuálního čísla a sazebnice a přidává datum změny každé stránky, redakci, prohlášení o ochraně soukromí, kategorie a odkazy na každou stránku v dalších jazycích časopisu (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Vytvořit mapy stránek časopisů"

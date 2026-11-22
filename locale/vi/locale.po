@@ -14,3 +14,7 @@ msgstr "Sơ đồ trang web cải tiến"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Cải thiện sơ đồ trang web của tạp chí cho các công cụ tìm kiếm. Loại bỏ các trang đăng nhập, đăng ký, tìm kiếm và số hiện tại cùng các bản in thử, đồng thời thêm ngày sửa đổi của từng trang, ban biên tập, tuyên bố quyền riêng tư, các danh mục và liên kết tới từng trang bằng các ngôn ngữ khác của tạp chí (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Tạo sơ đồ trang web của các tạp chí"

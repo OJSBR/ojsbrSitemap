@@ -14,3 +14,7 @@ msgstr "خريطة موقع محسّنة"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "يحسّن خريطة موقع المجلة لمحركات البحث. يزيل صفحات الدخول والتسجيل والبحث والعدد الحالي والملفات النهائية، ويضيف تاريخ تعديل كل صفحة وهيئة التحرير وبيان الخصوصية والتصنيفات وروابط كل صفحة بلغات المجلة الأخرى (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "إنشاء خرائط مواقع المجلات"

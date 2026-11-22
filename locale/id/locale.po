@@ -14,3 +14,7 @@ msgstr "Peta Situs yang Ditingkatkan"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Meningkatkan peta situs jurnal untuk mesin pencari. Menghapus halaman masuk, pendaftaran, pencarian, dan terbitan terkini serta galai, dan menambahkan tanggal perubahan setiap halaman, dewan redaksi, pernyataan privasi, kategori, dan tautan ke setiap halaman dalam bahasa lain jurnal (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Membuat peta situs jurnal"

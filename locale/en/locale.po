@@ -12,3 +12,6 @@ msgstr "Improved Sitemap"
 
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Improves the journal sitemap for search engines. It removes the login, registration, search and current issue pages and the galleys, and adds the modification date of each page, the editorial masthead, the privacy statement, the categories and the links to each page in the other languages of the journal (hreflang)."
+
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Generate the journal sitemaps"

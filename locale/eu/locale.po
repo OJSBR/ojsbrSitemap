@@ -14,3 +14,7 @@ msgstr "Gune-mapa hobetua"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Aldizkariaren gune-mapa hobetzen du bilatzaileentzat. Saioa hasteko, izena emateko, bilaketako eta uneko zenbakiko orriak eta probak kentzen ditu, eta orri bakoitzaren aldaketa-data, erredakzio-taldea, pribatutasun-adierazpena, kategoriak eta aldizkariaren beste hizkuntzetako orri bakoitzerako estekak (hreflang) gehitzen ditu."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Aldizkarien gune-mapak sortu"

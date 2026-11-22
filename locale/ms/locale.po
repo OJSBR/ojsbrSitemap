@@ -14,3 +14,7 @@ msgstr "Peta Laman Dipertingkat"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Mempertingkat peta laman jurnal untuk enjin carian. Membuang halaman log masuk, pendaftaran, carian dan terbitan semasa serta galei, dan menambah tarikh pengubahsuaian setiap halaman, sidang editorial, pernyataan privasi, kategori dan pautan ke setiap halaman dalam bahasa lain jurnal (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Jana peta laman jurnal"

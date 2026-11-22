@@ -1,10 +1,10 @@
 # OJSBR Sitemap — OJS plugin
 
 [![OJS](https://img.shields.io/badge/OJS-3.5-brightgreen)](https://pkp.sfu.ca/ojs/)
-[![Version](https://img.shields.io/badge/version-1.0.0.1-blue)](version.xml)
+[![Version](https://img.shields.io/badge/version-1.1.0.0-blue)](version.xml)
 [![License](https://img.shields.io/badge/license-GPL--3.0-lightgrey)](LICENSE)
 
-**⬇️ Install package:** [OJS 3.5](https://github.com/OJSBR/ojsbrSitemap/releases/download/1.0.0.1/ojsbrSitemap-1.0.0.1.tar.gz) — or browse all [Releases](../../releases).
+**⬇️ Install package:** [OJS 3.5](https://github.com/OJSBR/ojsbrSitemap/releases/download/1.1.0.0/ojsbrSitemap-1.1.0.0.tar.gz) — or browse all [Releases](../../releases).
 
 A generic plugin for **Open Journal Systems (OJS) 3.5** that improves the **sitemap of a journal**
 (`/index.php/<journal>/sitemap`) for search engines: it takes out the pages that are not content,
@@ -18,7 +18,7 @@ page in the other languages of the journal.
 
 | Application | Branch | Plugin release |
 |-------------|--------|----------------|
-| OJS 3.5.x   | [`stable-3_5_0`](../../tree/stable-3_5_0) *(default)* | 1.0.0.1 |
+| OJS 3.5.x   | [`stable-3_5_0`](../../tree/stable-3_5_0) *(default)* | 1.1.0.0 |
 
 Requires PHP 8.2 or later. OMP and OPS are not supported: there the plugin does nothing.
 
@@ -57,6 +57,25 @@ No address is listed twice. The addresses are built with the same calls OJS uses
 sitemap, so they match it exactly. The sitemap index of the site (`/index.php/index/sitemap`) is
 not changed.
 
+### Served from a file, generated ahead of time
+
+OJS builds the sitemap at each request, and for a large journal that takes longer than search
+engines wait (34 to 44 s for 5,400 articles, past the 30 s a PHP request of a hosting account may
+run). The plugin generates the sitemap of each journal in each of its languages with OJS's
+**scheduled tasks**, from the command line, and the sitemap page sends that file at once:
+
+- every hour, at half past, the task checks each journal where the plugin is enabled and
+  generates its sitemaps again when the content changed (articles, issues or announcements
+  published, changed or removed, languages of the journal) or when they are a day old;
+- a new file replaces the old one only when it is complete, so the page never waits for it;
+- when there is no file for the language of the request, or the file is more than a week old
+  (the scheduled tasks are not running), the page builds the sitemap as OJS does;
+- the files are kept in `cache/ojsbrSitemap/` of the installation.
+
+**Requires the scheduled tasks of OJS 3.5** (`lib/pkp/tools/scheduler.php run` every minute in the
+crontab, as the OJS documentation recommends). Without them the plugin still works, building the
+sitemap at each request.
+
 ## Installation
 
 Upload the package in **Settings › Website › Plugins › Upload A New Plugin**, or extract the
@@ -65,9 +84,11 @@ folder into `plugins/generic/` (giving `plugins/generic/ojsbrSitemap/`). Then en
 
 ## How it works (technical)
 
-- One hook: `SitemapHandler::createJournalSitemap`, which OJS calls with the finished
-  `DOMDocument`. Only the XML of the sitemap is changed; no core file is patched, no template is
-  replaced and nothing is stored.
+- `SitemapHandler::createJournalSitemap`, which OJS calls with the finished `DOMDocument`: only
+  the XML of the sitemap is changed. No core file is patched and no template is replaced.
+- `HasTaskScheduler::registerSchedules()` registers `classes/SitemapTask.php`, and `LoadHandler`
+  gives the sitemap page of a journal to `classes/SitemapPageHandler.php`, which extends the
+  sitemap handler of OJS and falls back to it.
 - `classes/SitemapTransformer.php` makes the changes from the lists it is given (addresses to
   remove and add, dates, the base address of the journal in each language) and needs no database,
   so it is tested on its own.
@@ -87,6 +108,10 @@ continuous integration on OJS with PHP 8.2/8.3 and MySQL/PostgreSQL:
   structure of the sitemap protocol (`tests/fixtures/sitemap-structure.xsd`);
 - the sitemap OJS builds for a journal of the database: pages removed, editorial masthead added,
   no duplicates, `lastmod` of an article and an issue compared with the database, language links;
+- the scheduled task: the file it writes has the entries of the sitemap the page builds, the page
+  sends it, and nothing is generated again while the content is the same; the files themselves
+  (served until a week old, generated again when the content changes or once a day, languages
+  removed, no temporary file left);
 - in the browser: the sitemap an anonymous visitor gets.
 
 The database tests fail when the suite runs without the plugin (`OJSBR_SITEMAP_WITHOUT=1`).
@@ -126,7 +151,7 @@ mesma página nos outros idiomas da revista.
 
 | Aplicação | Branch | Release do plugin |
 |-----------|--------|-------------------|
-| OJS 3.5.x | `stable-3_5_0` *(padrão)* | 1.0.0.1 |
+| OJS 3.5.x | `stable-3_5_0` *(padrão)* | 1.1.0.0 |
 
 Requer PHP 8.2 ou superior. OMP e OPS não são atendidos: neles o plugin não faz nada.
 
@@ -164,6 +189,25 @@ existe em outros idiomas.
 Nenhum endereço aparece duas vezes. Os endereços são gerados com as mesmas chamadas que o OJS usa
 para montar o sitemap e casam exatamente com os dele. O índice de sitemaps do site
 (`/index.php/index/sitemap`) não muda.
+
+#### Servido de um arquivo gerado antes
+
+O OJS monta o sitemap a cada acesso, e numa revista grande isso leva mais do que os buscadores
+esperam (34 a 44 s para 5.400 artigos, além dos 30 s que uma requisição PHP de hospedagem pode
+rodar). O plugin gera o sitemap de cada revista em cada idioma pelas **tarefas agendadas** do OJS,
+em linha de comando, e a página do sitemap envia esse arquivo na hora:
+
+- a cada hora, aos 30 minutos, a tarefa olha cada revista com o plugin ligado e gera de novo os
+  sitemaps quando o conteúdo mudou (artigos, edições ou notícias publicados, alterados ou
+  retirados, idiomas da revista) ou quando eles têm um dia;
+- o arquivo novo só substitui o antigo quando está completo, e a página nunca espera por ele;
+- sem arquivo para o idioma do acesso, ou com arquivo de mais de uma semana (as tarefas agendadas
+  pararam), a página monta o sitemap como o OJS;
+- os arquivos ficam em `cache/ojsbrSitemap/` da instalação.
+
+**Requer as tarefas agendadas do OJS 3.5** (`lib/pkp/tools/scheduler.php run` a cada minuto no
+crontab, como recomenda a documentação do OJS). Sem elas o plugin continua funcionando, montando o
+sitemap a cada acesso.
 
 ### Instalação
 

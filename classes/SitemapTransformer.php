@@ -165,7 +165,7 @@ class SitemapTransformer
     protected function addAlternates(DOMElement $url, string $loc): void
     {
         $rest = $this->pathAfterBase($loc, $this->currentBase);
-        if ($rest === null) {
+        if ($rest === null || $url->getElementsByTagName('xhtml:link')->length) {
             return;
         }
         $doc = $url->ownerDocument;

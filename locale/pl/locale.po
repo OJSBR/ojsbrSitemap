@@ -14,3 +14,7 @@ msgstr "Ulepszona mapa witryny"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Ulepsza mapę witryny czasopisma dla wyszukiwarek. Usuwa strony logowania, rejestracji, wyszukiwania i bieżącego numeru oraz pliki publikacji, a dodaje datę modyfikacji każdej strony, redakcję, oświadczenie o prywatności, kategorie i odnośniki do każdej strony w pozostałych językach czasopisma (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Generowanie map witryn czasopism"

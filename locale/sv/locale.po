@@ -14,3 +14,7 @@ msgstr "Förbättrad webbplatskarta"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Förbättrar tidskriftens webbplatskarta för sökmotorer. Tar bort sidorna för inloggning, registrering, sökning och aktuellt nummer samt publiceringsfilerna och lägger till ändringsdatumet för varje sida, redaktionen, integritetspolicyn, kategorierna och länkar till varje sida på tidskriftens andra språk (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Skapa tidskrifternas webbplatskartor"

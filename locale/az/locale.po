@@ -14,3 +14,7 @@ msgstr "Təkmilləşdirilmiş sayt xəritəsi"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Jurnalın sayt xəritəsini axtarış sistemləri üçün təkmilləşdirir. Giriş, qeydiyyat, axtarış və cari nömrə səhifələrini və qalleyləri çıxarır, hər səhifənin dəyişiklik tarixini, redaksiya heyətini, məxfilik bəyanatını, kateqoriyaları və jurnalın digər dillərindəki hər səhifəyə keçidləri (hreflang) əlavə edir."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Jurnalların sayt xəritələrini yaratmaq"

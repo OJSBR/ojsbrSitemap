@@ -14,3 +14,7 @@ msgstr "Geliştirilmiş Site Haritası"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Derginin site haritasını arama motorları için geliştirir. Giriş, kayıt, arama ve güncel sayı sayfalarını ve tam metin dosyalarını çıkarır; her sayfanın değişiklik tarihini, yayın kurulunu, gizlilik bildirimini, kategorileri ve derginin diğer dillerindeki her sayfaya bağlantıları (hreflang) ekler."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Dergilerin site haritalarını oluştur"

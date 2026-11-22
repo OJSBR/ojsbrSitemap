@@ -14,3 +14,7 @@ msgstr "改良版サイトマップ"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "検索エンジン向けに雑誌のサイトマップを改善します。ログイン、登録、検索、最新号のページとガレーを除き、各ページの更新日、編集委員会、プライバシーに関する声明、カテゴリー、雑誌の他の言語の各ページへのリンク（hreflang）を追加します。"
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "雑誌のサイトマップを生成"

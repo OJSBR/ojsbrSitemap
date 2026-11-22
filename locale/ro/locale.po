@@ -14,3 +14,7 @@ msgstr "Hartă a site-ului îmbunătățită"
 #, fuzzy
 msgid "plugins.generic.ojsbrSitemap.description"
 msgstr "Îmbunătățește harta site-ului revistei pentru motoarele de căutare. Elimină paginile de autentificare, înregistrare, căutare și număr curent, precum și șpalturile, și adaugă data modificării fiecărei pagini, echipa editorială, declarația de confidențialitate, categoriile și legăturile către fiecare pagină în celelalte limbi ale revistei (hreflang)."
+
+#, fuzzy
+msgid "plugins.generic.ojsbrSitemap.task"
+msgstr "Generarea hărților site-ului revistelor"
