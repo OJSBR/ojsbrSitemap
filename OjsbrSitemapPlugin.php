@@ -106,11 +106,16 @@ class OjsbrSitemapPlugin extends GenericPlugin
             }
         }
 
+        // OJS 3.5.0-6 lists every galley as article/view/<article>/<galley>; later 3.5
+        // releases list a PDF as article/download/<article>/<galley>, without the
+        // language. Both forms are removed.
         foreach ($this->getGalleys($journal) as $galley) {
-            $remove[] = $url('article', 'view', [
+            $ids = [
                 $this->bestId($galley->publication_url_path, $galley->submission_id),
                 $this->bestId($galley->url_path, $galley->galley_id),
-            ]);
+            ];
+            $remove[] = $url('article', 'view', $ids);
+            $remove[] = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $path, 'article', 'download', $ids, urlLocaleForPage: '');
         }
 
         foreach ($this->getIssues($journal) as $issue) {

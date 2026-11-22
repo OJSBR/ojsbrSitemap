@@ -36,7 +36,7 @@ exists in other languages.
 **Removed** from the sitemap:
 
 - `login`, `user/register`, `search` and `issue/current`;
-- the galleys (`article/view/<article>/<galley>`).
+- the galleys: `article/view/<article>/<galley>` (OJS 3.5.0-6) and, in later 3.5 releases that list a PDF by its download address, `article/download/<article>/<galley>`.
 
 **Added:**
 
@@ -144,7 +144,7 @@ existe em outros idiomas.
 **Retira** do sitemap:
 
 - `login`, `user/register`, `search` e `issue/current`;
-- as composições (`article/view/<artigo>/<composição>`).
+- as composições: `article/view/<artigo>/<composição>` (OJS 3.5.0-6) e, nas versões 3.5 seguintes, que listam o PDF pelo endereço de download, `article/download/<artigo>/<composição>`.
 
 **Acrescenta:**
 

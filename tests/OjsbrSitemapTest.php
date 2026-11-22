@@ -124,7 +124,7 @@ class OjsbrSitemapTest extends PKPTestCase
             ->count();
         $this->assertGreaterThan(0, $galleys, 'The journal has no galley to remove.');
         foreach ($locs as $loc) {
-            $this->assertDoesNotMatchRegularExpression('#/article/view/[^/]+/[^/]+$#', $loc, 'A galley is still listed.');
+            $this->assertDoesNotMatchRegularExpression('#/article/(view|download)/[^/]+/[^/]+$#', $loc, 'A galley is still listed.');
         }
     }
 

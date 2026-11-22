@@ -121,7 +121,7 @@ describe('OJSBR Sitemap', function() {
 			expect(new Set(locs).size, 'no address listed twice').to.eq(locs.length);
 			locs.forEach((loc) => {
 				expect(loc).not.to.match(/\/(login|search|user\/register|issue\/current)$/);
-				expect(loc, 'galley').not.to.match(/\/article\/view\/[^/]+\/[^/]+$/);
+				expect(loc, 'galley').not.to.match(/\/article\/(view|download)\/[^/]+\/[^/]+$/);
 			});
 			expect(locs.filter((loc) => /\/about\/editorialMasthead$/.test(loc)), 'editorial masthead').to.have.length(1);
 		});
