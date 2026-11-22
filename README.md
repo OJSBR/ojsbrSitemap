@@ -64,8 +64,8 @@ engines wait (34 to 44 s for 5,400 articles, past the 30 s a PHP request of a ho
 run). The plugin generates the sitemap of each journal in each of its languages with OJS's
 **scheduled tasks**, from the command line, and the sitemap page sends that file at once:
 
-- every hour, at half past, the task checks each journal where the plugin is enabled and
-  generates its sitemaps again when the content changed (articles, issues or announcements
+- four times an hour (at 5, 20, 35 and 50 minutes), the task checks each journal where the
+  plugin is enabled and generates its sitemaps again when the content changed (articles, issues or announcements
   published, changed or removed, languages of the journal) or when they are a day old;
 - a new file replaces the old one only when it is complete, so the page never waits for it;
 - when there is no file for the language of the request, or the file is more than a week old
@@ -197,8 +197,8 @@ esperam (34 a 44 s para 5.400 artigos, além dos 30 s que uma requisição PHP d
 rodar). O plugin gera o sitemap de cada revista em cada idioma pelas **tarefas agendadas** do OJS,
 em linha de comando, e a página do sitemap envia esse arquivo na hora:
 
-- a cada hora, aos 30 minutos, a tarefa olha cada revista com o plugin ligado e gera de novo os
-  sitemaps quando o conteúdo mudou (artigos, edições ou notícias publicados, alterados ou
+- quatro vezes por hora (aos 5, 20, 35 e 50 minutos), a tarefa olha cada revista com o plugin
+  ligado e gera de novo os sitemaps quando o conteúdo mudou (artigos, edições ou notícias publicados, alterados ou
   retirados, idiomas da revista) ou quando eles têm um dia;
 - o arquivo novo só substitui o antigo quando está completo, e a página nunca espera por ele;
 - sem arquivo para o idioma do acesso, ou com arquivo de mais de uma semana (as tarefas agendadas

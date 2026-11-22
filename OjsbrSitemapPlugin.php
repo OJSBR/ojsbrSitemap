@@ -77,15 +77,17 @@ class OjsbrSitemapPlugin extends GenericPlugin implements HasTaskScheduler
     }
 
     /**
-     * Generate the sitemaps every hour, at half past, away from the daily tasks of
-     * OJS at midnight UTC. The task itself checks in which journals the plugin is
-     * enabled: no context is known when the schedules are registered.
+     * Check the sitemaps four times an hour, away from minute 0, when the daily
+     * tasks of OJS run: a run of the scheduler may be skipped, and the check is a
+     * light query; a sitemap is generated only when its content changed. The task
+     * itself checks in which journals the plugin is enabled: no context is known
+     * when the schedules are registered.
      */
     public function registerSchedules(PKPScheduler $scheduler): void
     {
         $scheduler
             ->addSchedule(new SitemapTask())
-            ->hourlyAt(30)
+            ->cron('5,20,35,50 * * * *')
             ->name(SitemapTask::class)
             ->withoutOverlapping();
     }
