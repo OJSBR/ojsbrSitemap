@@ -146,6 +146,10 @@ class OjsbrSitemapTest extends PKPTestCase
 
     public function testTheTaskGeneratesTheSitemapOfThePageAndThePageServesIt(): void
     {
+        // The first language is generated first: without putting the language back,
+        // the process would be left in the last one.
+        $locales = Application::getContextDAO()->getById($this->journal->journal_id)->getSupportedLocales();
+        Locale::setLocale($locales[0]);
         $locale = Locale::getLocale();
         $live = $this->sitemap()->document->saveXML();
         $plugin = new OjsbrSitemapPlugin();
@@ -155,6 +159,8 @@ class OjsbrSitemapTest extends PKPTestCase
         $task = new SitemapTask();
         $run = fn () => (new \ReflectionMethod(SitemapTask::class, 'executeActions'))->invoke($task);
         $this->assertTrue($run(), 'The task failed: see its log in the scheduled task logs.');
+        // The process keeps its request and language: other tasks run after this one.
+        $this->assertSame($locale, Locale::getLocale());
         $file = $cache->fresh($this->journal->journal_id, $locale);
         $this->assertNotNull($file, 'The task wrote no sitemap.');
 

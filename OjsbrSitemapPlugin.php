@@ -120,12 +120,28 @@ class OjsbrSitemapPlugin extends GenericPlugin implements HasTaskScheduler
      */
     public function generateSitemap(Journal $journal, string $locale): string
     {
-        $request = $this->sitemapRequest($journal, $locale);
-        $doc = (new SitemapHandler())->_createContextSitemap($request);
-        // The hook already changed the document when the plugin was registered for
-        // this journal; the changes are made only once.
-        $this->getTransformer($request, $journal)->transform($doc);
-        return $doc->saveXML();
+        // The request and the language are put back afterwards: the other scheduled
+        // tasks run in the same process (notifications would go out in the language
+        // of the last sitemap).
+        $previousRequest = Registry::get('request', false);
+        $previousLocale = Locale::getLocale();
+        $previousServer = array_intersect_key($_SERVER, array_flip(['REQUEST_METHOD', 'PATH_INFO']));
+        try {
+            $request = $this->sitemapRequest($journal, $locale);
+            $doc = (new SitemapHandler())->_createContextSitemap($request);
+            // The hook already changed the document when the plugin was registered for
+            // this journal; the changes are made only once.
+            $this->getTransformer($request, $journal)->transform($doc);
+            return $doc->saveXML();
+        } finally {
+            unset($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO']);
+            $_SERVER = $previousServer + $_SERVER;
+            Registry::delete('request');
+            if ($previousRequest !== null) {
+                Registry::set('request', $previousRequest);
+            }
+            Locale::setLocale($previousLocale);
+        }
     }
 
     /**
