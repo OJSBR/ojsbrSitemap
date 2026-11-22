@@ -225,6 +225,24 @@ class SitemapTransformerTest extends PKPTestCase
         $this->assertSame('https://example.org/journal/es', $xpath->query('/s:urlset/s:url[s:loc="' . self::BASE . '"]/xhtml:link[@hreflang="es"]')->item(0)->getAttribute('href'));
     }
 
+    public function testALargeJournalIsChangedQuickly(): void
+    {
+        // 11,000 addresses and three languages (44,000 links): namespaced elements took
+        // 13 s here, longer than a PHP request of a hosting account may run.
+        $locs = array_map(fn (int $i) => self::BASE . '/article/view/' . $i, range(1, 11000));
+        $doc = $this->sitemap($locs);
+        $start = microtime(true);
+        (new SitemapTransformer(
+            lastModified: array_fill_keys($locs, '2024-05-06'),
+            alternates: ['en' => self::BASE, 'es' => 'https://example.org/journal/es', 'pt-BR' => 'https://example.org/journal/pt_BR'],
+            currentBase: self::BASE,
+            defaultHreflang: 'pt-BR',
+        ))->transform($doc);
+
+        $this->assertLessThan(3, microtime(true) - $start);
+        $this->assertSame(44000, $this->published($doc)->query('//xhtml:link')->length);
+    }
+
     public function testAJournalWithOneLanguageGetsNoLanguageLinks(): void
     {
         $doc = $this->sitemap([self::BASE]);

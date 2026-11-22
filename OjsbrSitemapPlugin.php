@@ -88,13 +88,18 @@ class OjsbrSitemapPlugin extends GenericPlugin
     }
 
     /**
-     * Read what the transformer needs. The URLs are built with the same calls
-     * OJS uses to build the sitemap, so they match exactly.
+     * Read what the transformer needs. The URLs are built by the router of OJS,
+     * as OJS builds the sitemap, so they match exactly.
      */
     public function getTransformer(Request $request, Journal $journal): SitemapTransformer
     {
         $path = $journal->getPath();
         $url = fn (?string $page = null, ?string $op = null, ?array $args = null) => $request->url($path, $page, $op, $args);
+        $articleUrl = $this->urlTemplate($request, $path, 'article', 'view', 1);
+        $galleyUrl = $this->urlTemplate($request, $path, 'article', 'view', 2);
+        $pdfUrl = $this->urlTemplate($request, $path, 'article', 'download', 2, '');
+        $issueUrl = $this->urlTemplate($request, $path, 'issue', 'view', 1);
+        $announcementUrl = $this->urlTemplate($request, $path, 'announcement', 'view', 1);
 
         $remove = [$url('login'), $url('user', 'register'), $url('search'), $url('issue', 'current')];
         $lastModified = [];
@@ -102,7 +107,7 @@ class OjsbrSitemapPlugin extends GenericPlugin
         foreach ($this->getArticles($journal) as $article) {
             $date = SitemapTransformer::date($article->last_modified) ?? SitemapTransformer::date($article->date_published);
             if ($date !== null) {
-                $lastModified[$url('article', 'view', [$this->bestId($article->url_path, $article->submission_id)])] = $date;
+                $lastModified[$articleUrl($this->bestId($article->url_path, $article->submission_id))] = $date;
             }
         }
 
@@ -114,14 +119,14 @@ class OjsbrSitemapPlugin extends GenericPlugin
                 $this->bestId($galley->publication_url_path, $galley->submission_id),
                 $this->bestId($galley->url_path, $galley->galley_id),
             ];
-            $remove[] = $url('article', 'view', $ids);
-            $remove[] = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $path, 'article', 'download', $ids, urlLocaleForPage: '');
+            $remove[] = $galleyUrl(...$ids);
+            $remove[] = $pdfUrl(...$ids);
         }
 
         foreach ($this->getIssues($journal) as $issue) {
             $date = SitemapTransformer::date($issue->last_modified) ?? SitemapTransformer::date($issue->date_published);
             if ($date !== null) {
-                $lastModified[$url('issue', 'view', [$this->bestId($issue->url_path, $issue->issue_id)])] = $date;
+                $lastModified[$issueUrl($this->bestId($issue->url_path, $issue->issue_id))] = $date;
             }
         }
 
@@ -129,7 +134,7 @@ class OjsbrSitemapPlugin extends GenericPlugin
         foreach (Announcement::withContextIds([$journal->getId()])->get([$announcementKey, Announcement::CREATED_AT]) as $announcement) {
             $date = SitemapTransformer::date((string) $announcement->getRawOriginal(Announcement::CREATED_AT));
             if ($date !== null) {
-                $lastModified[$url('announcement', 'view', [$announcement->getKey()])] = $date;
+                $lastModified[$announcementUrl((string) $announcement->getKey())] = $date;
             }
         }
 
@@ -161,6 +166,22 @@ class OjsbrSitemapPlugin extends GenericPlugin
             currentBase: $url(),
             defaultHreflang: SitemapTransformer::hreflang($journal->getPrimaryLocale()),
         );
+    }
+
+    /**
+     * A function that gives the URL of a page with the given ids in its path.
+     *
+     * The router builds the URL once, with markers in place of the ids, and the
+     * markers are replaced by the ids encoded as the router encodes each part of
+     * the path (rawurlencode). A large journal has thousands of articles and
+     * galleys, and building each URL with the router took longer than the time
+     * a PHP request is allowed to run.
+     */
+    public function urlTemplate(Request $request, string $path, string $page, string $op, int $ids, ?string $urlLocaleForPage = null): \Closure
+    {
+        $markers = array_map(fn (int $i) => "ojsbrSitemapId{$i}x", range(1, $ids));
+        $template = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $path, $page, $op, $markers, urlLocaleForPage: $urlLocaleForPage);
+        return fn (string ...$values) => strtr($template, array_combine($markers, array_map(rawurlencode(...), $values)));
     }
 
     /**

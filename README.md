@@ -1,10 +1,10 @@
 # OJSBR Sitemap — OJS plugin
 
 [![OJS](https://img.shields.io/badge/OJS-3.5-brightgreen)](https://pkp.sfu.ca/ojs/)
-[![Version](https://img.shields.io/badge/version-1.0.0.0-blue)](version.xml)
+[![Version](https://img.shields.io/badge/version-1.0.0.1-blue)](version.xml)
 [![License](https://img.shields.io/badge/license-GPL--3.0-lightgrey)](LICENSE)
 
-**⬇️ Install package:** [OJS 3.5](https://github.com/OJSBR/ojsbrSitemap/releases/download/1.0.0.0/ojsbrSitemap-1.0.0.0.tar.gz) — or browse all [Releases](../../releases).
+**⬇️ Install package:** [OJS 3.5](https://github.com/OJSBR/ojsbrSitemap/releases/download/1.0.0.1/ojsbrSitemap-1.0.0.1.tar.gz) — or browse all [Releases](../../releases).
 
 A generic plugin for **Open Journal Systems (OJS) 3.5** that improves the **sitemap of a journal**
 (`/index.php/<journal>/sitemap`) for search engines: it takes out the pages that are not content,
@@ -18,7 +18,7 @@ page in the other languages of the journal.
 
 | Application | Branch | Plugin release |
 |-------------|--------|----------------|
-| OJS 3.5.x   | [`stable-3_5_0`](../../tree/stable-3_5_0) *(default)* | 1.0.0.0 |
+| OJS 3.5.x   | [`stable-3_5_0`](../../tree/stable-3_5_0) *(default)* | 1.0.0.1 |
 
 Requires PHP 8.2 or later. OMP and OPS are not supported: there the plugin does nothing.
 
@@ -126,7 +126,7 @@ mesma página nos outros idiomas da revista.
 
 | Aplicação | Branch | Release do plugin |
 |-----------|--------|-------------------|
-| OJS 3.5.x | `stable-3_5_0` *(padrão)* | 1.0.0.0 |
+| OJS 3.5.x | `stable-3_5_0` *(padrão)* | 1.0.0.1 |
 
 Requer PHP 8.2 ou superior. OMP e OPS não são atendidos: neles o plugin não faz nada.
 

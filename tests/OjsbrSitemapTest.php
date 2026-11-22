@@ -109,6 +109,25 @@ class OjsbrSitemapTest extends PKPTestCase
         return $this->request->url($this->journal->path, $page, $op, $args);
     }
 
+    public function testUrlTemplatesGiveTheUrlsOfTheRouter(): void
+    {
+        $plugin = new OjsbrSitemapPlugin();
+        foreach ([['7'], ['a b'], ['ç/1'], ['10.1234/x?y']] as $ids) {
+            $this->assertSame(
+                $this->url('article', 'view', ...$ids),
+                $plugin->urlTemplate($this->request, $this->journal->path, 'article', 'view', 1)(...$ids)
+            );
+        }
+        $this->assertSame(
+            $this->url('article', 'view', 'a b', '3'),
+            $plugin->urlTemplate($this->request, $this->journal->path, 'article', 'view', 2)('a b', '3')
+        );
+        $this->assertSame(
+            $this->request->getDispatcher()->url($this->request, Application::ROUTE_PAGE, $this->journal->path, 'article', 'download', ['x/y', '3'], urlLocaleForPage: ''),
+            $plugin->urlTemplate($this->request, $this->journal->path, 'article', 'download', 2, '')('x/y', '3')
+        );
+    }
+
     public function testPagesWithoutContentForSearchEnginesAreRemoved(): void
     {
         $locs = $this->locs($this->sitemap());

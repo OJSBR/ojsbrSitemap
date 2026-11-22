@@ -20,7 +20,6 @@ use DOMElement;
 class SitemapTransformer
 {
     public const XHTML_NAMESPACE = 'http://www.w3.org/1999/xhtml';
-    public const XMLNS_NAMESPACE = 'http://www.w3.org/2000/xmlns/';
 
     /**
      * @param string[] $remove URLs taken out of the sitemap.
@@ -84,7 +83,11 @@ class SitemapTransformer
         }
 
         if (count($this->alternates) > 1 && $this->currentBase !== null) {
-            $root->setAttributeNS(self::XMLNS_NAMESPACE, 'xmlns:xhtml', self::XHTML_NAMESPACE);
+            // Declared as an attribute and the links created by their qualified name, as
+            // OJS declares the sitemap namespace: the XML is the same, but a namespaced
+            // element makes PHP walk the whole document at each append (13 s for the
+            // 44,000 links of a journal with 5,000 articles).
+            $root->setAttribute('xmlns:xhtml', self::XHTML_NAMESPACE);
             foreach ($seen as $loc => $url) {
                 $this->addAlternates($url, $loc);
             }
@@ -174,7 +177,7 @@ class SitemapTransformer
             $hrefs['x-default'] = $hrefs[$this->defaultHreflang];
         }
         foreach ($hrefs as $hreflang => $href) {
-            $link = $doc->createElementNS(self::XHTML_NAMESPACE, 'xhtml:link');
+            $link = $doc->createElement('xhtml:link');
             $link->setAttribute('rel', 'alternate');
             $link->setAttribute('hreflang', (string) $hreflang);
             $link->setAttribute('href', $href);
